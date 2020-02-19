@@ -1,0 +1,142 @@
+CREATE TABLE clientIT18108514(
+	clno char(3),
+	name varchar(12),
+	address varchar(30),
+	constraint client_PKIT18108514 PRIMARY KEY(clno)
+)
+/
+
+//stock
+CREATE TABLE stockIT18108514(
+	company char(7),
+	price number(6,2),
+	divident number(4,2),
+	eps number(4,2),
+	constraint stock_PKIT18108514 PRIMARY KEY(company)
+)
+/
+
+//trading
+CREATE TABLE tradingIT18108514(
+	company char(7),
+	exchange varchar(10),
+	constraint trading_PKIT18108514 PRIMARY KEY(company, exchange),
+	constraint trading_FKIT18108514 FOREIGN KEY(company) REFERENCES stockIT18108514
+)
+/
+
+//purchase
+CREATE TABLE purchaseIT18108514(
+	clno char(3),
+	company char(7),
+	pdate date,
+	qty number(6),
+	price number (6,2),
+	constraint purchase_PKIT18108514 PRIMARY KEY(clno, company, pdate),
+	constraint purchase_FK1IT18108514 FOREIGN KEY(company) REFERENCES stockIT18108514,
+	constraint purchase_FK2IT18108514 FOREIGN KEY(clno) REFERENCES clientIT18108514
+)
+/
+
+//client
+insert into clientIT18108514 values('100', 'John Smith', '3 East Av Bentley WA 6102')
+/
+insert into clientIT18108514 values('101', 'Jill Brody', '42 Bent St.Perth WA 6001')
+/
+
+
+
+//stock
+insert into stockIT18108514 values('BHP', '10.50', '1.50', '3.20')
+/
+INSERT INTO stockIT18108514 VALUES('IBM', '70.00', '4.25', '10.00')
+/
+INSERT INTO stockIT18108514 VALUES('INTEL', '76.50', '5.00', '12.40')
+/
+INSERT INTO stockIT18108514 VALUES('FORD', '40.00', '2.00', '8.50')
+/
+INSERT INTO stockIT18108514 VALUES('GM', '60.00', '2.50', '9.20')
+/
+INSERT INTO stockIT18108514 VALUES('INFOSYS', '45.00', '3.00', '7.80')
+/
+
+
+
+
+
+//trading
+INSERT INTO tradingIT18108514 VALUES('BHP', 'Sydney')
+/
+INSERT INTO tradingIT18108514 VALUES('BHP', 'New York')
+/
+INSERT INTO tradingIT18108514 VALUES('IBM', 'New York,')
+/
+INSERT INTO tradingIT18108514 VALUES('IBM', 'London')
+/
+INSERT INTO tradingIT18108514 VALUES('IBM', 'Tokyo')
+/
+INSERT INTO tradingIT18108514 VALUES('INTEL', 'New York')
+/
+INSERT INTO tradingIT18108514 VALUES('INTEL', 'London')
+/
+INSERT INTO tradingIT18108514 VALUES('FORD', 'New York')
+/
+INSERT INTO tradingIT18108514 VALUES('GM', 'New York')
+/
+INSERT INTO tradingIT18108514 VALUES('INFOSYS', 'New York')
+/
+
+//purchase
+INSERT INTO purchaseIT18108514 VALUES('c01', 'BHP', '02-jan-01', 2000, 10.50)
+/
+INSERT INTO purchaseIT18108514 VALUES('c01', 'IBM', '02-oct-01', '500', '58.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c01', 'IBM', '02-oct-01', '1200', '65.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c01', 'INFOSYS', '02-oct-01', '1000', '64.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c02', 'INTEL', '02-oct-01', '300', '35.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c02', 'INTEL', '02-oct-01', '400', '54.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c02', 'INTEL', '02-oct-01', '200', '60.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c02', 'FORD', '02-oct-01', '300', '40.00')
+/
+INSERT INTO purchaseIT18108514 VALUES('c02', 'GM', '02-oct-01', '500', '55.50')
+/
+
+
+//Q3
+//1
+SELECT DISTINCT c.name, p.company, s.price, s.divident, s.eps
+FROM clientIT18108514 c, stockIT18108514 s, purchaseIT18108514 p
+WHERE c.clno = p.clno AND s.company = p.company;
+
+//2
+SELECT c.name, SUM(p.qty) Tot_Qty, p.company, SUM(p.qty * p.price) / SUM(p.qty) AvePrice
+FROM clientIT18108514 c, purchaseIT18108514 p
+WHERE c.clno = p.clno
+GROUP BY c.name, p.company;
+
+//3
+SELECT p.company, c.name, SUM(p.qty) Tot_Qty, SUM(p.qty * p.price) Curr_Value
+FROM clientIT18108514 c, purchaseIT18108514 p, stockIT18108514 s, tradingIT18108514 t
+WHERE c.clno = p.clno AND s.company = t.company AND p.company = s.company AND t.exchange = 'New York'
+GROUP BY p.company, c.name;
+
+
+//4
+SELECT c.name, SUM(p.qty * p.price)Tot_Pprice
+FROM purchaseIT18108514 p, clientIT18108514 c
+WHERE p.clno = c.clno
+GROUP BY c.name;
+
+//5
+SELECT c.name, SUM(p.qty (s.price - p.price)) Profit_Val
+FROM clientIT18108514 c, purchaseIT18108514 p, stockIT18108514 s
+WHERE c.clno = p.clno AND s.company = p.company
+GROUP BY c.name;
+
+
+
