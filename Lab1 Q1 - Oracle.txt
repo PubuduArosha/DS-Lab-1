@@ -1,0 +1,36 @@
+create table clientLab1(
+    clno char(3),
+    name varchar(12),
+    address varchar(30),
+    constraint clientLab1_PK primary key(clno)
+)
+/
+
+create table stockLab1(
+    company char(7),
+    price number(6,2),
+    dividend number(4,2),
+    eps number(4,2),
+    constraint stockLab1_PK primary key(company)    
+)
+/
+
+create table tradingLab1(
+    company char(7),
+    exchange varchar(12),
+    constraint tradingLab1_PK primary key(company,exchange),
+    constraint tradingLab1_FK foreign key(company) references stockLab1
+)
+/
+
+create table purchaseLab1(
+    clno char(3),
+    company char(7),
+    pdate date,
+    qty number(6),
+    price number(6,2),
+    constraint purchaseLab1_PK primary key(clno,company,pdate),
+    constraint purchaseLab1_FK1 foreign key(clno) references clientLab1,
+    constraint purchaseLab1_FK2 foreign key(company) references stockLab1
+)
+/
