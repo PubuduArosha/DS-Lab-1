@@ -1,0 +1,58 @@
+
+//insert clientLab1 Table
+insert into clientLab1 values('100', 'John Smith', '3 East Av Bentley WA 6102')
+/
+insert into clientLab1 values('101', 'Jill Brody', '42 Bent St Perth WA 6001')
+/
+
+//insert stockLab1
+insert into stockLab1 values('BHP', 10.50, 1.50, 3.20)
+/
+insert into stockLab1 values('IBM', 70.00, 4.25, 10.00)
+/
+insert into stockLab1 values('INTEL', 76.50, 5.00, 12.40)
+/
+insert into stockLab1 values('FORD', 40.00, 2.00, 8.50)
+/
+
+//insert tradingLab1
+insert into tradingLab1 values('BHP', 'Sydney')
+/
+insert into tradingLab1 values('BHP', 'New York')
+/
+insert into tradingLab1 values('IBM', 'New York')
+/
+insert into tradingLab1 values('IBM', 'London')
+/
+insert into tradingLab1 values('IBM', 'Tokyo')
+/
+insert into tradingLab1 values('INTEL', 'New York')
+/
+insert into tradingLab1 values('INTEL', 'London')
+/
+insert into tradingLab1 values('FORD', 'New York')
+/
+
+//insert purchaseLab1 
+insert into purchaseLab1 values('100', 'BHP', '02-OCT-2001', 1000, 12.00)
+/
+insert into purchaseLab1 values('100', 'BHP', '08-JUN-2002', 2000, 10.50)
+/
+insert into purchaseLab1 values('100', 'IBM', '12-FEB-2000', 500, 58.00)
+/
+insert into purchaseLab1 values('100', 'IBM', '10-APR-2001', 1200, 65.00)
+/
+insert into purchaseLab1 values('100', 'INFOSYS', '11-AUG-2001', 1000, 64.00)
+/
+insert into purchaseLab1 values('101', 'INTEL', '30-JAN-2000', 300, 35.00)
+/
+insert into purchaseLab1 values('101', 'INTEL', '30-JAN-2001', 400, 54.00)
+/
+insert into purchaseLab1 values('101', 'INTEL', '02-OCT-2001', 200, 60.00)
+/
+
+***
+insert into purchaseLab1 values('101', 'FORD', '05-OCT-1999', 300, 40.00)
+/
+insert into purchaseLab1 values('101', 'GM', '12-DEC-2000', 500, 55.50)
+/
