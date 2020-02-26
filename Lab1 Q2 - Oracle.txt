@@ -15,6 +15,11 @@ insert into stockLab1 values('INTEL', 76.50, 5.00, 12.40)
 insert into stockLab1 values('FORD', 40.00, 2.00, 8.50)
 /
 
+insert into stockLab1 values('GM', 60.00, 2.50, 9.20)
+/
+insert into stockLab1 values('INFOSYS', 45.00, 3.00, 7.80)
+/
+
 //insert tradingLab1
 insert into tradingLab1 values('BHP', 'Sydney')
 /
@@ -42,17 +47,16 @@ insert into purchaseLab1 values('100', 'IBM', '12-FEB-2000', 500, 58.00)
 /
 insert into purchaseLab1 values('100', 'IBM', '10-APR-2001', 1200, 65.00)
 /
-insert into purchaseLab1 values('100', 'INFOSYS', '11-AUG-2001', 1000, 64.00)
-/
+
 insert into purchaseLab1 values('101', 'INTEL', '30-JAN-2000', 300, 35.00)
 /
 insert into purchaseLab1 values('101', 'INTEL', '30-JAN-2001', 400, 54.00)
 /
 insert into purchaseLab1 values('101', 'INTEL', '02-OCT-2001', 200, 60.00)
 /
-
-***
 insert into purchaseLab1 values('101', 'FORD', '05-OCT-1999', 300, 40.00)
+/
+insert into purchaseLab1 values('100', 'INFOSYS', '11-AUG-2001', 1000, 64.00)
 /
 insert into purchaseLab1 values('101', 'GM', '12-DEC-2000', 500, 55.50)
 /
