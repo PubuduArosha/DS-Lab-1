@@ -1,0 +1,57 @@
+//3(a)
+select c.name, p.company, s.price, s.dividend, s.eps
+from clientLab1 c, stockLab1 s, purchaseLab1 p
+where c.clno = p.clno and s.company = p.
+/
+
+//3(b)
+select
+	c.name,
+	p.company,
+	sum(p.qty) total_qty,
+	sum(p.qty * p.price) / sum(p.qty) APP
+from
+	clientLab1 c,
+	purchaseLab1 p
+where
+	c.clno = p.clno
+group by
+	p.company, c.name
+/
+
+//3(c)
+select
+	p.company,
+	c.name,
+	sum(p.qty),
+	sum(p.qty * s.price) current_value
+from
+	clientLab1 c,
+	purchaseLab1 p,
+	stockLab1 s,
+	tradingLab1 t
+where
+	c.clno = p.clno and p.company = s.company and s.company = t.company and t.exchange = 'New York'
+group by
+	p.company, c.name
+/
+
+//3(d)
+select
+	c.name,
+	sum(p.qty * p.price) total_price
+from
+	clientLab1 c,
+	purchaseLab1 p
+where
+	c.clno = p.clno
+group by
+	c.name
+/
+
+//3(e)
+select c.name, sum(p.qty * ( s.price - p.price ) ) book_profit
+from clientLab1 c, purchaseLab1 p, stockLab1 s
+where c.clno = p.clno and p.company = s.company
+group by c.name 
+/
